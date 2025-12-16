@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS activities (
     -- Temporal Data
     start_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     end_time DATETIME, -- Null implies currently active or instantaneous event
-    duration_seconds INTEGER GENERATED ALWAYS AS (strftime('%s', end_time) - strftime('%s', start_time)) VIRTUAL,
+    duration_seconds INTEGER, -- Calculated by application
     
     -- Classification
     type TEXT NOT NULL CHECK(type IN ('APP', 'URL', 'FILE', 'NOTE', 'TASK')),
@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS activities (
     -- Processing Pipeline Status
     is_sensitive BOOLEAN DEFAULT 0, -- If true, content is excluded from AI
     processing_status TEXT DEFAULT 'PENDING' CHECK(processing_status IN ('PENDING', 'PROCESSED', 'FAILED', 'IGNORED')),
+    capture_method TEXT DEFAULT 'window_api', -- 'window_api', 'browser_api', 'accessibility', 'fallback'
     
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );

@@ -8,5 +8,15 @@
     },
     "keywords": [],
     "author": "",
-    "license": "ISC"
+    "license": "ISC",
+    "dependencies": {
+        "active-win": "^8.2.1",
+        "better-sqlite3": "^12.5.0"
+    },
+    "devDependencies": {
+        "@types/better-sqlite3": "^7.6.13",
+        "@types/node": "^25.0.2",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.9.3"
+    }
 }
